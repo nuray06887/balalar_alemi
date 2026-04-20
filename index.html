@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Балалар әлемі - Жас деңгейі бойынша ойындар</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <input type="checkbox" id="burger-toggle" class="burger-checkbox">
+    <div class="menu-overlay"></div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">🧸 Балалар әлемі</div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#home" data-page="home">🏠 Басты</a></li>
+                <li class="nav-item"><a href="#about" data-page="about">🐾 Аңдар</a></li>
+                <li class="nav-item"><a href="#gallery" data-page="gallery">🖼️ Галерея</a></li>
+                <li class="nav-item"><a href="#games" data-page="games">🎮 Ойындар</a></li>
+                <li class="nav-item"><a href="#profile" data-page="profile">👤 Профиль</a></li>
+                <li class="nav-item"><button id="darkModeToggle" class="dark-mode-btn">🌙</button></li>
+            </ul>
+            <label for="burger-toggle" class="burger-icon">☰</label>
+        </div>
+    </nav>
+
+    <div class="mobile-menu">
+        <ul>
+            <li><a href="#home" data-page="home">🏠 Басты</a></li>
+            <li><a href="#about" data-page="about">🐾 Аңдар</a></li>
+            <li><a href="#gallery" data-page="gallery">🖼️ Галерея</a></li>
+            <li><a href="#games" data-page="games">🎮 Ойындар</a></li>
+            <li><a href="#profile" data-page="profile">👤 Профиль</a></li>
+            <li><button id="mobileDarkBtn">🌙 Түнгі режим</button></li>
+        </ul>
+    </div>
+
+    <main>
+        <!-- БАСТЫ БЕТ -->
+        <section id="home" class="page active-page">
+            <div class="container">
+                <div class="hero">
+                    <h1 class="rainbow-text">Қош келдіңіз, балалар! 🎈</h1>
+                    <p id="welcomeMessage">Мұнда сендерді көңілді ойындар, әдемі суреттер және қызықты аңдар күтіп тұр!</p>
+                    <button id="showRegisterBtn" class="btn-fun">📝 Тіркелу / Кіру</button>
+                </div>
+                
+                <div class="daily-fact">
+                    <h3>💡 <span id="factText">Жүктелуде...</span></h3>
+                </div>
+
+                <!-- ҚЫЗЫҚТЫ ДЕРЕКТЕР -->
+                <div class="fun-facts">
+                    <h2>🧩 Қызықты деректер</h2>
+                    <div class="facts-grid">
+                        <div class="fact-card"><div class="fact-emoji">🐕</div><p>Иттердің иіс сезуі адамнан <strong>10000 есе</strong> күшті!</p></div>
+                        <div class="fact-card"><div class="fact-emoji">🐈</div><p>Мысықтар <strong>100-ден астам</strong> дыбыс шығара алады</p></div>
+                        <div class="fact-card"><div class="fact-emoji">🐟</div><p>Теңіз жылқылары - әлемдегі ең баяу балықтар</p></div>
+                        <div class="fact-card"><div class="fact-emoji">🦒</div><p>Керіктердің тілі <strong>45 см</strong> ұзындықта!</p></div>
+                        <div class="fact-card"><div class="fact-emoji">🐘</div><p>Пілдер сусыз <strong>4 күнге</strong> дейін жүре алады</p></div>
+                        <div class="fact-card"><div class="fact-emoji">🐧</div><p>Пингвиндер <strong>тізелерімен емес</strong>, аяқтарымен жүреді</p></div>
+                    </div>
+                </div>
+
+                <!-- ЖАНУАРЛАРДЫҢ ДЫБЫСТАРЫ -->
+                <div class="animal-sounds">
+                    <h2>🔊 Жануарлар қалай сөйлейді?</h2>
+                    <div class="sounds-grid">
+                        <div class="sound-card" onclick="playAnimalSound('dog')"><div class="sound-emoji">🐶</div><p>Ит</p><span class="sound-word">"Ар-ар!"</span></div>
+                        <div class="sound-card" onclick="playAnimalSound('cat')"><div class="sound-emoji">🐱</div><p>Мысық</p><span class="sound-word">"Мияу!"</span></div>
+                        <div class="sound-card" onclick="playAnimalSound('cow')"><div class="sound-emoji">🐮</div><p>Сиыр</p><span class="sound-word">"Му-му!"</span></div>
+                        <div class="sound-card" onclick="playAnimalSound('duck')"><div class="sound-emoji">🦆</div><p>Үйрек</p><span class="sound-word">"Бау-бау!"</span></div>
+                        <div class="sound-card" onclick="playAnimalSound('sheep')"><div class="sound-emoji">🐑</div><p>Қой</p><span class="sound-word">"Ме-ме!"</span></div>
+                        <div class="sound-card" onclick="playAnimalSound('frog')"><div class="sound-emoji">🐸</div><p>Бақа</p><span class="sound-word">"Қуа-қуа!"</span></div>
+                    </div>
+                    <p class="sound-hint">🎵 Әр карточканы басып, дыбысты естіңіз!</p>
+                </div>
+
+                <!-- БҮГІНГІ ПАЙЫМ -->
+                <div class="daily-quote">
+                    <h2>🌟 Бүгінгі пайым</h2>
+                    <div class="quote-box">
+                        <p id="dailyQuote">"Білім - ең үлкен байлық!"</p>
+                        <button class="quote-btn" onclick="changeQuote()">🔁 Жаңа пайым</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- АҢДАР ТУРАЛЫ -->
+        <section id="about" class="page">
+            <div class="container">
+                <h1>🐾 Танымал аңдар</h1>
+                <div class="animals-grid">
+                    <div class="animal-card"><img src="images/panda.jpg" alt="Панда"><h3>Үлкен панда 🐼</h3><p>Күніне 12-14 сағат бамбук жейді</p></div>
+                    <div class="animal-card"><img src="images/pil.jpg" alt="Піл"><h3>Африка пілі 🐘</h3><p>Ең үлкен құрлық жануары</p></div>
+                    <div class="animal-card"><img src="images/kerik.jpg" alt="Керік"><h3>Керік 🦒</h3><p>Мойны 2 метрге дейін жетеді</p></div>
+                    <div class="animal-card"><img src="images/delfin.jpg" alt="Дельфин"><h3>Дельфин 🐬</h3><p>Ең ақылды теңіз жануарлары</p></div>
+                    <div class="animal-card"><img src="images/arystan.jpg" alt="Арыстан"><h3>Арыстан 🦁</h3><p>Орман патшасы</p></div>
+                    <div class="animal-card"><img src="images/koala.jpg" alt="Коала"><h3>Коала 🐨</h3><p>Күніне 22 сағат ұйықтайды</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ГАЛЕРЕЯ (Слайдер) -->
+        <section id="gallery" class="page">
+            <div class="container">
+                <h1>🖼️ Суреттер галереясы</h1>
+                <div class="slider-container">
+                    <div class="slider">
+                        <div class="slide"><img src="images/gallery1.jpg" alt="Сурет 1"></div>
+                        <div class="slide"><img src="images/gallery2.jpg" alt="Сурет 2"></div>
+                        <div class="slide"><img src="images/gallery3.jpg" alt="Сурет 3"></div>
+                        <div class="slide"><img src="images/gallery4.jpg" alt="Сурет 4"></div>
+                        <div class="slide"><img src="images/gallery5.jpg" alt="Сурет 5"></div>
+                        <div class="slide"><img src="images/gallery6.jpg" alt="Сурет 6"></div>
+                        <div class="slide"><img src="images/gallery7.jpg" alt="Сурет 7"></div>
+                        <div class="slide"><img src="images/gallery8.jpg" alt="Сурет 8"></div>
+                    </div>
+                    <button class="slider-btn prev-btn">◀</button>
+                    <button class="slider-btn next-btn">▶</button>
+                    <div class="slider-dots"></div>
+                </div>
+                <div class="slider-auto">
+                    <label class="auto-label"><input type="checkbox" id="autoSlideCheckbox"> ▶ Автоматты режим</label>
+                </div>
+            </div>
+        </section>
+
+        <!-- ОЙЫНДАР -->
+        <section id="games" class="page">
+            <div class="container">
+                <h1>🎮 Көңілді ойындар</h1>
+                <div class="progress-container">
+                    <label>🏆 Жалпы жетістіктер: <span id="totalScore">0</span> ұпай</label>
+                    <div class="progress-bar"><div id="progressFill" class="progress-fill" style="width:0%"></div></div>
+                </div>
+                <div class="games-grid">
+                    <div class="game-card"><div class="game-emoji">❓</div><h3>Жануарлар викторинасы</h3><button class="game-btn" onclick="startQuiz()">🎮 Ойнау</button></div>
+                    <div class="game-card"><div class="game-emoji">🧠</div><h3>Жұп тап</h3><button class="game-btn" onclick="startMemory()">🎮 Ойнау</button></div>
+                    <div class="game-card"><div class="game-emoji">🎨</div><h3>Түстерді тап</h3><button class="game-btn" onclick="startColorGame()">🎮 Ойнау</button></div>
+                    <div class="game-card"><div class="game-emoji">🖐️</div><h3>Жануарларды үйіне апар</h3><button class="game-btn" onclick="startDragDrop()">🎮 Ойнау</button></div>
+                    <div class="game-card"><div class="game-emoji">🧮</div><h3>Математика</h3><button class="game-btn" onclick="startMathGame()">🎮 Ойнау</button></div>
+                </div>
+                <div id="gameArea" class="game-area"><p style="text-align:center; padding:2rem;">🎮 Ойынды бастау үшін жоғарыдағы батырмаларды басыңыз!</p></div>
+            </div>
+        </section>
+
+        <!-- ПРОФИЛЬ -->
+        <section id="profile" class="page">
+            <div class="container">
+                <h1>👤 Менің профиль</h1>
+                <div class="profile-card">
+                    <div class="avatar-section">
+                        <img id="avatarImg" src="https://cdn-icons-png.flaticon.com/512/1998/1998592.png" alt="Аватар">
+                        <div class="avatar-choices">
+                            <p>🎨 Аватарыңды таңда:</p>
+                            <img src="https://cdn-icons-png.flaticon.com/512/1998/1998592.png" class="avatar-option" onclick="changeAvatar(this.src)">
+                            <img src="https://cdn-icons-png.flaticon.com/512/1998/1998596.png" class="avatar-option" onclick="changeAvatar(this.src)">
+                            <img src="https://cdn-icons-png.flaticon.com/512/1998/1998602.png" class="avatar-option" onclick="changeAvatar(this.src)">
+                            <img src="https://cdn-icons-png.flaticon.com/512/1998/1998612.png" class="avatar-option" onclick="changeAvatar(this.src)">
+                        </div>
+                    </div>
+                    <div class="stats">
+                        <h3>📊 Статистика</h3>
+                        <p>🏆 Жалпы ұпай: <span id="profileScore">0</span></p>
+                        <p>🎮 Ойындар ойналды: <span id="gamesPlayed">0</span></p>
+                        <p>📅 Соңғы кіру: <span id="lastVisit">-</span></p>
+                        <p>👤 Қолданушы: <span id="userNameDisplay">Қонақ</span></p>
+                        <p>⭐ Жас деңгейі: <span id="userAgeDisplay">Тіркелмеген</span></p>
+                        <button class="btn-fun" onclick="resetProfile()">🔄 Қалпына келтіру</button>
+                        <button class="btn-fun" onclick="showRegistration()" style="margin-top:10px;">✏️ Профильді өзгерту</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="registerModal" class="modal">
+        <div class="modal-content register-content">
+            <h2>📝 Тіркелу</h2>
+            <form id="registerForm">
+                <div class="form-group"><label>👧 Атың:</label><input type="text" id="regName" placeholder="Атыңды жаз" required></div>
+                <div class="form-group">
+                    <label>⭐ Жасыңды таңда:</label>
+                    <div class="age-options">
+                        <label class="age-option"><input type="radio" name="ageLevel" value="3-4" checked><span>🐣 3-4 жас (Кішкентай)</span></label>
+                        <label class="age-option"><input type="radio" name="ageLevel" value="5-6"><span>🐥 5-6 жас (Орташа)</span></label>
+                        <label class="age-option"><input type="radio" name="ageLevel" value="7-8"><span>🦊 7-8 жас (Үлкен)</span></label>
+                    </div>
+                </div>
+                <button type="submit" class="btn-fun">🚀 Бастау!</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="quizModal" class="modal">
+        <div class="modal-content"><span class="close-quiz">&times;</span><div id="quizInner"></div></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
