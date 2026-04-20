@@ -443,7 +443,7 @@ function startMemory() {
     renderMemory();
 }
 
-// 3. ТҮСТЕР ОЙЫНЫ (7-8 ЖАСҚА АРНАЛҒАН ТҮЗЕТУМЕН)
+// 3. ТҮСТЕР ОЙЫНЫ
 function startColorGame() {
     let colors, colorCodes;
     const level = getDifficultyLevel();
@@ -710,21 +710,88 @@ function startMathGame() {
     renderMath();
 }
 
-// ========== ЖАНУАРЛАРДЫҢ ДЫБЫСТАРЫ ==========
+// ========== ЖАНУАРЛАРДЫҢ ДЫБЫСТАРЫ (НАҚТЫ ДЫБЫС ФАЙЛДАРЫМЕН) ==========
 function playAnimalSound(animal) {
+    let soundFile = '';
     let soundText = '';
+    let soundEmoji = '';
+    
     switch(animal) {
-        case 'dog': soundText = 'Ар-ар! 🐶'; break;
-        case 'cat': soundText = 'Мияу! 🐱'; break;
-        case 'cow': soundText = 'Му-му! 🐮'; break;
-        case 'duck': soundText = 'Бау-бау! 🦆'; break;
-        case 'sheep': soundText = 'Ме-ме! 🐑'; break;
-        case 'frog': soundText = 'Қуа-қуа! 🐸'; break;
-        default: soundText = '🔊';
+        case 'dog': 
+            soundFile = 'sounds/dog.mp3';
+            soundText = 'Ар-ар! Ар-ар!';
+            soundEmoji = '🐶';
+            break;
+        case 'cat': 
+            soundFile = 'sounds/cat.mp3';
+            soundText = 'Мияу! Мияу!';
+            soundEmoji = '🐱';
+            break;
+        case 'cow': 
+            soundFile = 'sounds/cow.mp3';
+            soundText = 'Му-му! Му-му!';
+            soundEmoji = '🐮';
+            break;
+        case 'duck': 
+            soundFile = 'sounds/duck.mp3';
+            soundText = 'Бау-бау! Бау-бау!';
+            soundEmoji = '🦆';
+            break;
+        case 'sheep': 
+            soundFile = 'sounds/sheep.mp3';
+            soundText = 'Ме-ме! Ме-ме!';
+            soundEmoji = '🐑';
+            break;
+        case 'frog': 
+            soundFile = 'sounds/frog.mp3';
+            soundText = 'Қуа-қуа! Қуа-қуа!';
+            soundEmoji = '🐸';
+            break;
+        default: 
+            soundText = '🔊';
+            soundEmoji = '🔊';
     }
-    alert(soundText);
+    
+    // Дыбыс файлын ойнату
+    if (soundFile) {
+        const audio = new Audio(soundFile);
+        audio.play().catch(e => {
+            console.log('Дыбыс файлы табылмады:', e);
+            // Егер дыбыс файлы жоқ болса, мәтін көрсетеміз
+            showSoundMessage(soundEmoji, soundText);
+        });
+    } else {
+        showSoundMessage(soundEmoji, soundText);
+    }
+    
     playSound('click');
 }
+
+// Дыбыс мәтінін экранда көрсету
+function showSoundMessage(emoji, text) {
+    let messageDiv = document.createElement('div');
+    messageDiv.style.cssText = 'position:fixed; bottom:30%; left:50%; transform:translateX(-50%); background:#f59e0b; color:white; padding:15px 25px; border-radius:50px; font-size:1.5rem; font-weight:bold; z-index:1000; text-align:center; box-shadow:0 4px 15px rgba(0,0,0,0.2); animation:fadeOutMsg 1.5s ease;';
+    messageDiv.innerHTML = `${emoji} ${text} ${emoji}`;
+    document.body.appendChild(messageDiv);
+    
+    setTimeout(() => {
+        messageDiv.style.opacity = '0';
+        setTimeout(() => {
+            if (messageDiv.parentNode) messageDiv.parentNode.removeChild(messageDiv);
+        }, 500);
+    }, 1500);
+}
+
+// Анимация стилі
+const animStyle = document.createElement('style');
+animStyle.textContent = `
+    @keyframes fadeOutMsg {
+        0% { opacity: 1; transform: translateX(-50%) scale(1); }
+        70% { opacity: 1; transform: translateX(-50%) scale(1); }
+        100% { opacity: 0; transform: translateX(-50%) scale(0.9); }
+    }
+`;
+document.head.appendChild(animStyle);
 
 // ========== БҮГІНГІ ПАЙЫМ ==========
 const quotes = [
